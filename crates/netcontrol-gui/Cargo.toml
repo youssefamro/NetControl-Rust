@@ -1,0 +1,28 @@
+[package]
+name = "netcontrol-gui"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Desktop GUI for NetControl (Rust rebuild). Recreates the Avalonia interface with egui/eframe over netcontrol-core and netcontrol-net. Demonstration mode uses clearly-labeled simulated data; live capture is opt-in and gated."
+
+[lib]
+name = "netcontrol_gui"
+path = "src/lib.rs"
+
+[[bin]]
+name = "netcontrol-gui"
+path = "src/main.rs"
+
+[dependencies]
+netcontrol-core = { path = "../netcontrol-core" }
+netcontrol-net = { path = "../netcontrol-net" }
+eframe = "0.29.1"
+egui = "0.29.1"
+egui_extras = "0.29.1"
+
+[features]
+default = []
+# Enables real packet capture (passive ARP listening + traffic monitoring).
+# Requires Npcap/libpcap. Off by default; the GUI runs in demonstration mode
+# and reports that live capture is unavailable when this is not compiled in.
+live-capture = ["netcontrol-net/live-capture"]

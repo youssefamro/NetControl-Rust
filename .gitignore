@@ -1,0 +1,10 @@
+# Rust build artifacts
+/target
+**/*.rs.bk
+
+# Application data & diagnostics (kept on D:, never committed)
+/.appdata/
+/diagnostics/
+
+# Release output (built by packaging scripts)
+/dist/

@@ -1,0 +1,23 @@
+NetControl (Rust rebuild)
+
+This project is a Rust reimplementation of NetControl, a C# / .NET 8 / Avalonia
+application by Abel Meza Enriquez (nov0caina), published under the MIT License
+at https://github.com/nov0caina/NetControl. The original copyright notice is
+retained in LICENSE. Behavior, constants, protocol layouts, the OUI vendor
+table, the color palette, and the application icon (assets/app_icon.ico,
+assets/app_icon.png) are derived from that project.
+
+This rebuild is not affiliated with or endorsed by the original author.
+
+Third-party components (Rust crates; see Cargo.lock for exact versions):
+  eframe / egui / egui_extras  MIT OR Apache-2.0
+  pnet                         MIT OR Apache-2.0
+  if-addrs                     MIT OR BSD-3-Clause
+  mac_address                  MIT OR Apache-2.0
+  windows-sys                  MIT OR Apache-2.0
+  libc                         MIT OR Apache-2.0
+  ...and their transitive dependencies, under their respective licenses.
+
+Runtime dependency (not redistributed): Npcap (https://npcap.com/) is required
+for Live capture on Windows. Npcap is licensed separately by Insecure.Com LLC
+and must be installed by the user; it is not bundled with NetControl.

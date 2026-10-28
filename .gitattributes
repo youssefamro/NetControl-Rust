@@ -1,0 +1,15 @@
+# Normalize text to LF in the repository.
+* text=auto eol=lf
+
+# Shell scripts must stay LF to run on Linux/macOS.
+*.sh text eol=lf
+
+# Windows scripts and installer sources use CRLF.
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.iss text eol=crlf
+packaging/windows/README.txt text eol=crlf
+
+# Binary assets.
+*.ico binary
+*.png binary

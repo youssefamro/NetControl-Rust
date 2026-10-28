@@ -1,0 +1,31 @@
+[package]
+name = "netcontrol-net"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Phase 2 networking layer for NetControl: Ethernet/ARP packet handling, passive ARP observation, interface enumeration, and gated local discovery. Active discovery is disabled by default; no ARP poisoning / interception."
+
+[dependencies]
+netcontrol-core = { path = "../netcontrol-core" }
+if-addrs = "0.13"
+mac_address = "1.1"
+# Live packet capture (pnet) is OFF by default. It links against Npcap/WinPcap on
+# Windows and libpcap elsewhere, so it is gated behind an opt-in feature and is
+# never required to build, test, or lint the crate.
+pnet = { version = "0.35", optional = true }
+
+[target.'cfg(windows)'.dependencies]
+# Loads Packet.dll at runtime (Npcap directory + presence probe) for live capture.
+windows-sys = { version = "0.59.0", features = ["Win32_Foundation", "Win32_System_LibraryLoader"] }
+
+[features]
+default = []
+live-capture = ["dep:pnet"]
+
+[[example]]
+name = "list_capture_devices"
+required-features = ["live-capture"]
+
+[[example]]
+name = "passive_capture_smoke"
+required-features = ["live-capture"]
